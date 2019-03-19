@@ -18,8 +18,9 @@ public class IntrebariRepository {
 	private List<Intrebare> intrebari;
 	private String filename;
 	public IntrebariRepository(String filename) {
-		setIntrebari(loadIntrebariFromFile());
 		this.filename = filename;
+		setIntrebari(loadIntrebariFromFile());
+
 	}
 	
 	public void addIntrebare(Intrebare i) throws DuplicateIntrebareException, InputValidationFailedException {
@@ -78,14 +79,12 @@ public class IntrebariRepository {
 	public List<Intrebare> loadIntrebariFromFile(){
 		
 		List<Intrebare> intrebari = new LinkedList<Intrebare>();
-		BufferedReader br = null; 
-		String line = null;
 		List<String> intrebareAux;
 		Intrebare intrebare;
-		
+
 		try{
-			br = new BufferedReader(new FileReader(filename));
-			line = br.readLine();
+			BufferedReader br = new BufferedReader(new FileReader(filename));
+			String line = br.readLine();
 			while(line != null){
 				intrebareAux = new LinkedList<String>();
 				while(!line.equals("##")){
@@ -102,17 +101,10 @@ public class IntrebariRepository {
 				intrebari.add(intrebare);
 				line = br.readLine();
 			}
-		
+			br.close();
 		}
 		catch (IOException e) {
 			System.err.println(e.getMessage());
-		}
-		finally{
-			try {
-				br.close();
-			} catch (IOException e) {
-				System.err.println(e.getMessage());
-			}
 		}
 		
 		return intrebari;

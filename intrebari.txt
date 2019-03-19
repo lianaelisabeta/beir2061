@@ -1,0 +1,62 @@
+Intrebare1 ?
+1) i1r1
+2) i1r2
+3) i1r3
+1
+Domeniu1
+##
+Intrebare2 ?
+1) i2r1
+2) i2r2
+3) i2r3
+3
+Domeniu1
+##
+Intrebare3?
+1) i3r1
+2) i3r2
+3) i3r3
+3
+Domeniu2
+##
+Intrebare4 ?
+1) i4r1
+2) i4r2
+3) i4r3
+2
+Domeniu3
+##
+Intrebare5 ?
+1) i5r1
+2) i5r2
+3) i5r3
+2
+Domeniu3
+##
+Intrebare6 ?
+1) i6r1
+2) i6r2
+3) i6r3
+1
+Domeniu4
+##
+Intrebare7 ?
+1) i7r1
+2) i7r2
+3) i7r3
+2
+Domeniu4
+##
+Intrebare8 ?
+1) i8r1
+2) i8r2
+3) i8r3
+2
+Domeniu5
+##Intrebare 11 ?
+1) v1
+2) v2
+3) v3
+3
+Domeniu5
+##

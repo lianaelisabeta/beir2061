@@ -40,7 +40,7 @@ public class IntrebariController {
         Intrebare intrebare;
         Test test = new Test();
 
-        while (testIntrebari.size() <= 5) {
+        while (testIntrebari.size() < 5) {
             intrebare = intrebariRepository.pickRandomIntrebare();
 
             if (!domenii.contains(intrebare.getDomeniu())) {

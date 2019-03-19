@@ -29,7 +29,7 @@ public class IntrebariStartApp {
 
 		IntrebariController intrebariController = new IntrebariController(file);
 		boolean activ = true;
-		String optiune = null;
+		String optiune;
 
 		while(activ){
 
