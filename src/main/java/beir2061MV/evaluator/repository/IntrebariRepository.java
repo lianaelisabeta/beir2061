@@ -121,7 +121,7 @@ public class IntrebariRepository {
 			out.write(intrebare.getVarianta3() + "\n");
 			out.write(intrebare.getVariantaCorecta() + "\n");
 			out.write(intrebare.getDomeniu() + "\n");
-			out.write("##");
+			out.write("##\n");
 
 		}
 		catch (IOException io){
