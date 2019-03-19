@@ -60,10 +60,18 @@ Intrebare 11 ?
 3) v3
 3
 Domeniu5
-##Intrebare 12?
+##
+Intrebare 12?
 1) 1 
 2) 2
 3) 3
 3
 Domeniu5
+##
+Intrebare 13 ?
+1) v1
+2) v2
+3) v3
+3
+Domeniu2
 ##

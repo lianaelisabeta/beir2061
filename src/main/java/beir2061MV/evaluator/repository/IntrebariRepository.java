@@ -115,13 +115,14 @@ public class IntrebariRepository {
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter out = new PrintWriter(bw))
 		{
+			out.write("\n");
 			out.write(intrebare.getEnunt() + "\n");
 			out.write(intrebare.getVarianta1() + "\n");
 			out.write(intrebare.getVarianta2() + "\n");
 			out.write(intrebare.getVarianta3() + "\n");
 			out.write(intrebare.getVariantaCorecta() + "\n");
 			out.write(intrebare.getDomeniu() + "\n");
-			out.write("##\n");
+			out.write("##");
 
 		}
 		catch (IOException io){
