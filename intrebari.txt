@@ -75,3 +75,10 @@ Intrebare 13 ?
 3
 Domeniu2
 ##
+Intrebare 13 ?
+1) 1
+2) 2
+3) 3
+2
+Domeniu5
+##
