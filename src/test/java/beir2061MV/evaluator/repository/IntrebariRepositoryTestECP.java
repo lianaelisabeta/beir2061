@@ -45,44 +45,68 @@ public class IntrebariRepositoryTestECP {
         assertTrue(intrebariRepository.getIntrebari().contains(intrebare));
     }
 
-    @Test(expected = InputValidationFailedException.class)
-    public void TC2_ECP() throws DuplicateIntrebareException, InputValidationFailedException {
+    @Test
+    public void TC2_ECP() throws DuplicateIntrebareException{
         intrebare.setEnunt("");
-        intrebariRepository.addIntrebare(intrebare);
+        try{
+        intrebariRepository.addIntrebare(intrebare);}
+        catch (InputValidationFailedException exc){
+            assertEquals("Enuntul este vid!",exc.getMessage());
+        }
     }
 
-    @Test(expected = InputValidationFailedException.class)
-    public void TC3_ECP() throws DuplicateIntrebareException, InputValidationFailedException {
+    @Test
+    public void TC3_ECP() throws DuplicateIntrebareException{
         String longStr = "Care este ";
         longStr += CharBuffer.allocate(100).toString().replace('\0', '.') + "?";
         intrebare.setEnunt(longStr);
-        intrebariRepository.addIntrebare(intrebare);
+        try{
+            intrebariRepository.addIntrebare(intrebare);}
+        catch (InputValidationFailedException exc){
+            assertEquals("Lungimea enuntului depaseste 100 de caractere!",exc.getMessage());
+        }
     }
 
-    @Test(expected = InputValidationFailedException.class)
-    public void TC4_ECP() throws DuplicateIntrebareException, InputValidationFailedException {
+    @Test
+    public void TC4_ECP() throws DuplicateIntrebareException{
         intrebare.setVarianta1("");
-        intrebariRepository.addIntrebare(intrebare);
+        try{
+            intrebariRepository.addIntrebare(intrebare);}
+        catch (InputValidationFailedException exc){
+            assertEquals("Varianta1 este vida!",exc.getMessage());
+        }
     }
 
-    @Test(expected = InputValidationFailedException.class)
-    public void TC5_ECP() throws DuplicateIntrebareException, InputValidationFailedException {
+    @Test
+    public void TC5_ECP() throws DuplicateIntrebareException{
         String longStr = "1)";
         longStr += CharBuffer.allocate(60).toString().replace('\0', '.');
         intrebare.setVarianta1(longStr);
-        intrebariRepository.addIntrebare(intrebare);
+        try{
+            intrebariRepository.addIntrebare(intrebare);}
+        catch (InputValidationFailedException exc){
+            assertEquals("Lungimea variantei1 depaseste 50 de caractere!",exc.getMessage());
+        }
     }
 
-    @Test(expected = InputValidationFailedException.class)
-    public void TC6_ECP() throws DuplicateIntrebareException, InputValidationFailedException {
+    @Test
+    public void TC6_ECP() throws DuplicateIntrebareException{
         intrebare.setEnunt("care este?");
-        intrebariRepository.addIntrebare(intrebare);
+        try{
+            intrebariRepository.addIntrebare(intrebare);}
+        catch (InputValidationFailedException exc){
+            assertEquals("Prima litera din enunt nu e majuscula!",exc.getMessage());
+        }
     }
 
-    @Test(expected = InputValidationFailedException.class)
-    public void TC7_ECP() throws DuplicateIntrebareException, InputValidationFailedException {
+    @Test
+    public void TC7_ECP() throws DuplicateIntrebareException {
         intrebare.setVarianta1("1 abc");
-        intrebariRepository.addIntrebare(intrebare);
+        try{
+            intrebariRepository.addIntrebare(intrebare);}
+        catch (InputValidationFailedException exc){
+            assertEquals("Varianta1 nu incepe cu '1)'!",exc.getMessage());
+        }
     }
 
 

@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.nio.CharBuffer;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
@@ -40,10 +41,14 @@ public class IntrebariRepositoryTestBVA {
         }
     }
 
-    @Test(expected = InputValidationFailedException.class)
-    public void TC9_BVA() throws DuplicateIntrebareException, InputValidationFailedException {
+    @Test
+    public void TC9_BVA() throws DuplicateIntrebareException{
         intrebare.setEnunt("C");
-        intrebariRepository.addIntrebare(intrebare);
+        try{
+            intrebariRepository.addIntrebare(intrebare);}
+        catch (InputValidationFailedException exc){
+            assertEquals("Ultimul caracter din enunt nu e '?'!",exc.getMessage());
+        }
     }
 
 
@@ -67,13 +72,16 @@ public class IntrebariRepositoryTestBVA {
         assertTrue(intrebariRepository.getIntrebari().contains(intrebare));
     }
 
-    @Test(expected = InputValidationFailedException.class)
-    public void TC12_BVA() throws DuplicateIntrebareException, InputValidationFailedException {
+    @Test
+    public void TC12_BVA() throws DuplicateIntrebareException{
         String enunt = "Care ";
         enunt += CharBuffer.allocate(95).toString().replace('\0', '.') + "?";
         intrebare.setEnunt(enunt);
-        intrebariRepository.addIntrebare(intrebare);
-        assertTrue(intrebariRepository.getIntrebari().contains(intrebare));
+        try{
+            intrebariRepository.addIntrebare(intrebare);}
+        catch (InputValidationFailedException exc){
+            assertEquals("Lungimea enuntului depaseste 100 de caractere!",exc.getMessage());
+        }
     }
 
     @Test
@@ -94,11 +102,15 @@ public class IntrebariRepositoryTestBVA {
         assertTrue(intrebariRepository.getIntrebari().contains(intrebare));
     }
 
-    @Test(expected = InputValidationFailedException.class)
-    public void TC16_BVA() throws DuplicateIntrebareException, InputValidationFailedException {
+    @Test
+    public void TC16_BVA() throws DuplicateIntrebareException {
         String raspuns1 = "1)";
         raspuns1 += CharBuffer.allocate(49).toString().replace('\0', '.');
         intrebare.setVarianta1(raspuns1);
-        intrebariRepository.addIntrebare(intrebare);
+        try{
+            intrebariRepository.addIntrebare(intrebare);}
+        catch (InputValidationFailedException exc){
+            assertEquals("Lungimea variantei1 depaseste 50 de caractere!",exc.getMessage());
+        }
     }
 }
