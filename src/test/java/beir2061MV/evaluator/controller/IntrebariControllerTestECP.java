@@ -1,5 +1,6 @@
-package beir2061MV.evaluator.repository;
+package beir2061MV.evaluator.controller;
 
+import beir2061MV.evaluator.controller.IntrebariController;
 import beir2061MV.evaluator.exception.DuplicateIntrebareException;
 import beir2061MV.evaluator.exception.InputValidationFailedException;
 import beir2061MV.evaluator.model.Intrebare;
@@ -13,10 +14,10 @@ import java.nio.CharBuffer;
 
 import static org.junit.Assert.*;
 
-public class IntrebariRepositoryTestECP {
+public class IntrebariControllerTestECP {
 
 
-    private IntrebariRepository intrebariRepository = new IntrebariRepository("test.txt");
+    private IntrebariController intrebariController = new IntrebariController("test.txt");
     private Intrebare intrebare;
 
     @Before
@@ -41,15 +42,15 @@ public class IntrebariRepositoryTestECP {
 
     @Test
     public void TC1_ECP() throws DuplicateIntrebareException, InputValidationFailedException {
-        intrebariRepository.addIntrebare(intrebare);
-        assertTrue(intrebariRepository.getIntrebari().contains(intrebare));
+        Intrebare intrebare1 = intrebariController.addNewIntrebare(intrebare);
+        assertEquals(intrebare, intrebare1);
     }
 
     @Test
     public void TC2_ECP() throws DuplicateIntrebareException{
         intrebare.setEnunt("");
         try{
-        intrebariRepository.addIntrebare(intrebare);}
+        intrebariController.addNewIntrebare(intrebare);}
         catch (InputValidationFailedException exc){
             assertEquals("Enuntul este vid!",exc.getMessage());
         }
@@ -61,7 +62,7 @@ public class IntrebariRepositoryTestECP {
         longStr += CharBuffer.allocate(100).toString().replace('\0', '.') + "?";
         intrebare.setEnunt(longStr);
         try{
-            intrebariRepository.addIntrebare(intrebare);}
+            intrebariController.addNewIntrebare(intrebare);}
         catch (InputValidationFailedException exc){
             assertEquals("Lungimea enuntului depaseste 100 de caractere!",exc.getMessage());
         }
@@ -71,7 +72,7 @@ public class IntrebariRepositoryTestECP {
     public void TC4_ECP() throws DuplicateIntrebareException{
         intrebare.setVarianta1("");
         try{
-            intrebariRepository.addIntrebare(intrebare);}
+            intrebariController.addNewIntrebare(intrebare);}
         catch (InputValidationFailedException exc){
             assertEquals("Varianta1 este vida!",exc.getMessage());
         }
@@ -83,7 +84,7 @@ public class IntrebariRepositoryTestECP {
         longStr += CharBuffer.allocate(60).toString().replace('\0', '.');
         intrebare.setVarianta1(longStr);
         try{
-            intrebariRepository.addIntrebare(intrebare);}
+            intrebariController.addNewIntrebare(intrebare);}
         catch (InputValidationFailedException exc){
             assertEquals("Lungimea variantei1 depaseste 50 de caractere!",exc.getMessage());
         }
@@ -93,7 +94,7 @@ public class IntrebariRepositoryTestECP {
     public void TC6_ECP() throws DuplicateIntrebareException{
         intrebare.setEnunt("care este?");
         try{
-            intrebariRepository.addIntrebare(intrebare);}
+            intrebariController.addNewIntrebare(intrebare);}
         catch (InputValidationFailedException exc){
             assertEquals("Prima litera din enunt nu e majuscula!",exc.getMessage());
         }
@@ -103,7 +104,7 @@ public class IntrebariRepositoryTestECP {
     public void TC7_ECP() throws DuplicateIntrebareException {
         intrebare.setVarianta1("1 abc");
         try{
-            intrebariRepository.addIntrebare(intrebare);}
+            intrebariController.addNewIntrebare(intrebare);}
         catch (InputValidationFailedException exc){
             assertEquals("Varianta1 nu incepe cu '1)'!",exc.getMessage());
         }

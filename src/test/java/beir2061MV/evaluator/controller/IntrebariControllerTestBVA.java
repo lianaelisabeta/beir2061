@@ -1,5 +1,6 @@
-package beir2061MV.evaluator.repository;
+package beir2061MV.evaluator.controller;
 
+import beir2061MV.evaluator.controller.IntrebariController;
 import beir2061MV.evaluator.exception.DuplicateIntrebareException;
 import beir2061MV.evaluator.exception.InputValidationFailedException;
 import beir2061MV.evaluator.model.Intrebare;
@@ -15,10 +16,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
-public class IntrebariRepositoryTestBVA {
+public class IntrebariControllerTestBVA {
 
 
-    private IntrebariRepository intrebariRepository = new IntrebariRepository("test.txt");
+    //private IntrebariRepository intrebariRepository = new IntrebariRepository("test.txt");
+    private IntrebariController intrebariController = new IntrebariController("test.txt");
     private Intrebare intrebare;
 
     @Before
@@ -45,7 +47,7 @@ public class IntrebariRepositoryTestBVA {
     public void TC9_BVA() throws DuplicateIntrebareException{
         intrebare.setEnunt("C");
         try{
-            intrebariRepository.addIntrebare(intrebare);}
+            intrebariController.addNewIntrebare(intrebare);}
         catch (InputValidationFailedException exc){
             assertEquals("Ultimul caracter din enunt nu e '?'!",exc.getMessage());
         }
@@ -57,9 +59,9 @@ public class IntrebariRepositoryTestBVA {
         String enunt = "Care ";
         enunt += CharBuffer.allocate(93).toString().replace('\0', '.') + "?";
         intrebare.setEnunt(enunt);
-        intrebariRepository.addIntrebare(intrebare);
+        Intrebare intrebare1 = intrebariController.addNewIntrebare(intrebare);
 
-        assertTrue(intrebariRepository.getIntrebari().contains(intrebare));
+        assertEquals(intrebare, intrebare1);
     }
 
     @Test
@@ -67,9 +69,9 @@ public class IntrebariRepositoryTestBVA {
         String enunt = "Care ";
         enunt += CharBuffer.allocate(94).toString().replace('\0', '.') + "?";
         intrebare.setEnunt(enunt);
-        intrebariRepository.addIntrebare(intrebare);
+        Intrebare intrebare1 = intrebariController.addNewIntrebare(intrebare);
 
-        assertTrue(intrebariRepository.getIntrebari().contains(intrebare));
+        assertEquals(intrebare, intrebare1);
     }
 
     @Test
@@ -78,7 +80,7 @@ public class IntrebariRepositoryTestBVA {
         enunt += CharBuffer.allocate(95).toString().replace('\0', '.') + "?";
         intrebare.setEnunt(enunt);
         try{
-            intrebariRepository.addIntrebare(intrebare);}
+            intrebariController.addNewIntrebare(intrebare);}
         catch (InputValidationFailedException exc){
             assertEquals("Lungimea enuntului depaseste 100 de caractere!",exc.getMessage());
         }
@@ -89,8 +91,8 @@ public class IntrebariRepositoryTestBVA {
         String raspuns1 = "1)";
         raspuns1 += CharBuffer.allocate(47).toString().replace('\0', '.');
         intrebare.setVarianta1(raspuns1);
-        intrebariRepository.addIntrebare(intrebare);
-        assertTrue(intrebariRepository.getIntrebari().contains(intrebare));
+        Intrebare intrebare1 = intrebariController.addNewIntrebare(intrebare);
+        assertEquals(intrebare, intrebare1);
     }
 
     @Test
@@ -98,8 +100,8 @@ public class IntrebariRepositoryTestBVA {
         String raspuns1 = "1)";
         raspuns1 += CharBuffer.allocate(48).toString().replace('\0', '.');
         intrebare.setVarianta1(raspuns1);
-        intrebariRepository.addIntrebare(intrebare);
-        assertTrue(intrebariRepository.getIntrebari().contains(intrebare));
+        Intrebare intrebare1 = intrebariController.addNewIntrebare(intrebare);
+        assertEquals(intrebare, intrebare1);
     }
 
     @Test
@@ -108,7 +110,7 @@ public class IntrebariRepositoryTestBVA {
         raspuns1 += CharBuffer.allocate(49).toString().replace('\0', '.');
         intrebare.setVarianta1(raspuns1);
         try{
-            intrebariRepository.addIntrebare(intrebare);}
+            intrebariController.addNewIntrebare(intrebare);}
         catch (InputValidationFailedException exc){
             assertEquals("Lungimea variantei1 depaseste 50 de caractere!",exc.getMessage());
         }
