@@ -1,4 +1,4 @@
-package beir2061MV.evaluator.controller;
+package BBT;
 
 import beir2061MV.evaluator.controller.IntrebariController;
 import beir2061MV.evaluator.exception.DuplicateIntrebareException;
@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
-public class IntrebariControllerTestBVA {
+public class BVA_UnitTest {
 
 
     //private IntrebariRepository intrebariRepository = new IntrebariRepository("test.txt");

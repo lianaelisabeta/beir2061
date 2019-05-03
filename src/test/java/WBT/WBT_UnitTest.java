@@ -1,5 +1,6 @@
-package beir2061MV.evaluator.controller;
+package WBT;
 
+import beir2061MV.evaluator.controller.IntrebariController;
 import beir2061MV.evaluator.exception.DuplicateIntrebareException;
 import beir2061MV.evaluator.exception.InputValidationFailedException;
 import beir2061MV.evaluator.exception.NotAbleToCreateStatisticsException;
@@ -15,7 +16,7 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
-public class IntrebariControllerTestWBT {
+public class WBT_UnitTest {
 
     private IntrebariController intrebariController = new IntrebariController("test2.txt");
 

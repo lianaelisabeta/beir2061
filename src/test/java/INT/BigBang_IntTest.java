@@ -1,4 +1,4 @@
-package beir2061MV;
+package INT;
 
 import beir2061MV.evaluator.controller.IntrebariController;
 import beir2061MV.evaluator.exception.DuplicateIntrebareException;
@@ -21,15 +21,14 @@ import java.util.Map;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
-public class TopDown_IntTest {
-
-    private IntrebariController intrebariController;
+public class BigBang_IntTest {
+    private IntrebariController intrebariController = new IntrebariController("test.txt");
     private Intrebare intrebare;
 
 
     @Before
     public void setUp() {
-        intrebariController =  new IntrebariController("test.txt");
+
         intrebare = new Intrebare("Care este aria patratului?",
                 "1)l*l", "2)l-l", "3)4*l",
                 "1",
@@ -37,7 +36,7 @@ public class TopDown_IntTest {
     }
 
     @After
-    public  void cleanFile() {
+    public void cleanFile() {
 
         try {
             PrintWriter pw = new PrintWriter("test.txt");
@@ -55,8 +54,8 @@ public class TopDown_IntTest {
         intrebare.setEnunt(enunt);
         Intrebare intrebare1 = null;
 
-        intrebare1 = intrebariController.addNewIntrebare(intrebare);
-        assertEquals(intrebare, intrebare1);
+            intrebare1 = intrebariController.addNewIntrebare(intrebare);
+            assertEquals(intrebare, intrebare1);
 
     }
 
@@ -70,7 +69,7 @@ public class TopDown_IntTest {
                     "1",
                     "Domeniu5");
 
-            intrebariController.addNewIntrebare(intrebare);
+                intrebariController.addNewIntrebare(intrebare);
 
         }
         beir2061MV.evaluator.model.Test test = intrebariController.createNewTest();
@@ -87,49 +86,14 @@ public class TopDown_IntTest {
                 "2",
                 "Domeniu3");
 
-        intrebariController.addNewIntrebare(intrebare);
-        Statistica statistica = intrebariController.getStatistica();
-        Map<String, Integer> intrebariDomenii = statistica.getIntrebariDomenii();
-        assertEquals(4, intrebariDomenii.keySet().size());
-        assertEquals(2, intrebariDomenii.get("Domeniu3").intValue());
-        assertEquals(1, intrebariDomenii.get("Domeniu1").intValue());
-        assertEquals(1, intrebariDomenii.get("Domeniu2").intValue());
-        assertEquals(1, intrebariDomenii.get("Domeniu0").intValue());
-    }
-
-    @Test
-    public void P_A_Test() throws DuplicateIntrebareException, InputValidationFailedException {
-        for (int i = 0; i < 5; i++) {
-            Intrebare intrebare = new Intrebare("Intrebare " + i + " ?",
-                    "1)r1i" + i, "2)r2i" + i, "3)r3i" + i,
-                    "1",
-                    "Domeniu" + i);
-
-            Intrebare intrebare1 = intrebariController.addNewIntrebare(intrebare);
-            assertEquals(intrebare,intrebare1);
-        }
-    }
-
-    @Test
-    public void P_A_B_Test() throws DuplicateIntrebareException, InputValidationFailedException, NotAbleToCreateTestException {
-        List<Intrebare> intrebariList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            Intrebare intrebare = new Intrebare("Intrebare " + i + " ?",
-                    "1)r1i" + i, "2)r2i" + i, "3)r3i" + i,
-                    "1",
-                    "Domeniu" + i);
-
-            intrebariList.add(intrebare);
-            Intrebare intrebare1 = intrebariController.addNewIntrebare(intrebare);
-            assertEquals(intrebare,intrebare1);
-        }
-
-
-        beir2061MV.evaluator.model.Test test = intrebariController.createNewTest();
-        for(Intrebare intrebare : intrebariList){
-            assertTrue(test.getIntrebari().contains(intrebare));
-        }
-        assertEquals(5, test.getIntrebari().size());
+            intrebariController.addNewIntrebare(intrebare);
+            Statistica statistica = intrebariController.getStatistica();
+            Map<String, Integer> intrebariDomenii = statistica.getIntrebariDomenii();
+            assertEquals(4, intrebariDomenii.keySet().size());
+            assertEquals(2, intrebariDomenii.get("Domeniu3").intValue());
+            assertEquals(1, intrebariDomenii.get("Domeniu1").intValue());
+            assertEquals(1, intrebariDomenii.get("Domeniu2").intValue());
+            assertEquals(1, intrebariDomenii.get("Domeniu0").intValue());
     }
 
     @Test
@@ -141,7 +105,6 @@ public class TopDown_IntTest {
                     "1)r1i" + i, "2)r2i" + i, "3)r3i" + i,
                     "1",
                     "Domeniu" + i);
-
             intrebariList.add(intrebare);
             Intrebare intrebare1 = intrebariController.addNewIntrebare(intrebare);
             assertEquals(intrebare,intrebare1);
@@ -149,7 +112,7 @@ public class TopDown_IntTest {
 
         beir2061MV.evaluator.model.Test test = intrebariController.createNewTest();
         for(Intrebare intrebare : intrebariList){
-            assertTrue(test.getIntrebari().contains(intrebare));
+           assertTrue(test.getIntrebari().contains(intrebare));
         }
         assertEquals(5, test.getIntrebari().size());
 
@@ -169,7 +132,8 @@ public class TopDown_IntTest {
                     "1",
                     "Domeniu" + i);
 
-            intrebariController.addNewIntrebare(intrebare);
-        }
+                intrebariController.addNewIntrebare(intrebare);
+            }
     }
+
 }

@@ -1,4 +1,4 @@
-package beir2061MV.evaluator.controller;
+package BBT;
 
 import beir2061MV.evaluator.controller.IntrebariController;
 import beir2061MV.evaluator.exception.DuplicateIntrebareException;
@@ -14,7 +14,7 @@ import java.nio.CharBuffer;
 
 import static org.junit.Assert.*;
 
-public class IntrebariControllerTestECP {
+public class ECP_UnitTest {
 
 
     private IntrebariController intrebariController = new IntrebariController("test.txt");
